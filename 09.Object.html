@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+        /*
+            9. 객체(데이터를 담아내는 컨테이너, 그릇)
+            객체는 value와 key값으로 되어있다
+            배열과 비슷하지만 Index를 사용하지않고 key값으로 정의한다
+            다른 언어에서 연관배열, Map, Dictionary가 이에 해당된다
+
+            객체를 만드는 법
+             - var 변수명 = {'키이름': 값, "키이름": 값.......};
+             - var 변수명 = {};
+             변수명['키이름'] = 값;
+             - var 변수명 = new Object();
+             변수명['키이름'] = 값;
+
+            객체의 값을 가져오는법
+             - 변수명['키이름'];
+             - 변수명.키이름;
+        */
+
+        // var test = {"h2": 10, 'hoho':2};
+        // var test2 = {};
+        // test2['hoho'] = 1;
+        // var test3 = new Object();
+        // test3['h2'] = 2;
+
+        // console.log(test['h2']);
+        // console.log(test2.hoho);
+        // console.log(test3.h2);
+        
+        // /*  
+        //     배열은 순서가있기때문에 순서대로 나온다
+        //     하지만 객체는 순서가 없고 key와 value만이있다 >> 그렇기 때문에 forin문을 사용한다
+        //     for(객체의 key값(변수) in 객체의변수명){
+        //         코드
+        //     }
+        //     객체의 key값(변수)는 변수명처럼 사용한다 >> 이건 코드에서 사용할것이기때문에
+        // */
+
+        // for(a in test){
+        //     // key값만 구하기 >> 여기서 a로 변수명을 정했는데 아무거나 써도 상관이없다. var a와 같은의미
+        //     console.log("key값 : " + a);
+        //     // key의 값으로 value를 구하기
+        //     console.log(test[a]);
+        // }
+
+        var object = {'one': 1, "two": 2};
+        document.write("<ul class='ulclass'>");
+        for(var key in object){
+            document.write("<li> key값 : " + key +", value값 : " + object[key]+"</li>");
+        }
+        document.write("</ul>");
+
+        // 객체지향프로그래밍
+        // 서로 연관되어있는 값과 처리를 하나의 객체안에 그룹핑해놓은 프로그래밍
+        var object1 = {
+            // 객체 안에 객체를 넣을 수 있다.
+            "list":{"a":1, "b":2},
+            // 객체안에 함수도 넣을 수 있다.
+            "list2":function(){
+                alert("hello world");
+            },
+            // this사용
+            "list3":function(){
+                // alert(this);
+                // 여기서 사용되는 this란 현재 함수가 속해있는 객체를 뜻하는것 >> object1을 뜻한다
+                // console.log(this.list);
+                // 그렇다면 여기서도 list의 값을 띄워줄수있다
+                for(var i in this.list){
+                    console.log(i, this.list[i]);
+                }
+            }
+        }
+        // 객체 안에 객체 불러오기
+        console.log(object1["list"]["a"]);
+
+        // 객체안에 함수 호출
+        // object1["list2"]();
+        object1.list3();
+    </script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            8. 배열
+            연관된 데이터를 모아서 통으로 관리하기 위해서 사용하는 데이터 타입
+
+            배열의 생성
+        */
+        var text = ['h2', 'hohoho', 'hayoon', '4'];
+
+        document.write(text);
+        document.write("<br>");
+
+
+        // 배열의 호출 : 변수명[index번호] >> 제로인덱스 기반
+        document.write(text[1]);
+        document.write("<br>");
+        for(var i = 0; i < text.length; i++){
+            document.write(text[i].toUpperCase() + "<br>"); // toUpperCase() >> 모든문자를 대문자로 만들기
+            document.write(text[i].toLowerCase() + "<br>"); // toLowerCase() >> 모든문자를 소문자로 만들기
+            console.log(text.length);
+        }
+
+        // 배열의 제어
+        // - 값 추가
+        // 배열변수이름.push(값); >> 배열 맨마지막에 값을 추가한다
+        // 배열변수이름.concat(여러개의값[값, 값](배열로 넣어줘야한다)); >> 배열 맨마지막에 여러개의 값을 넣겠다
+        // 배열변수이름.unshift(값); >> 배열 맨앞에 값을 추가한다.
+        // 배열변수이름.splice(위치index, 몇개, 값); >> 배열 원하는위치(index)에 몇개를 지우고 값을 넣을것인지(0이면 아무것도 안지워지고 index번호보다 앞에 추가가된다)
+        var li = ['a', 'b', 'c', 'd'];
+        li.push('f');
+        document.write(li);
+        document.write("<br>");
+        li.concat(['g', 'h']);
+        document.write(li);
+        document.write("<br>");
+        li.splice(2, 1, 'p','q');
+        document.write(li);
+        document.write("<br>");
+        
+        // - 값 제거
+        // 배열변수이름.shift(); >> 배열안에 제일 앞에 있는 값을 삭제
+        // 배열변수이름.pop(); >> 배열안에 제일 뒤에 있는 값을 삭제
+
+        // - 정렬
+        // 배열변수이름.sort(); >> 알파벳순서대로 정렬(괄호안에 function사용해서 내가 직접 정렬 기준을 잡아줘도된다)
+        // 배열변수이름.reverse(); >> 역순정렬
+
+    </script>
+</body>
+</html>

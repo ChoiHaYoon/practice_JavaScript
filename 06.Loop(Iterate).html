@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 6. 반복문
+        /* 
+            - while
+            while(조건) { 반복실행 될 코드들 } (true에서 false가 될때까지)
+            while(ture){
+                document.write("하이<br>");
+            }
+        */
+        // document.write() >> html에서 body에 쓰는것처럼 사용하는 자바스크립트 명령어
+        document.write("하이<br>");
+
+        // 무한루프를 안하게 하려면 적당한 시점에 false가 되야한다.
+        // 반복조건
+        var i = 0;
+        while( i < 5){
+            document.write("while문 i의 값 : " + i + "<br>");
+            i += 1;
+        }
+
+        /*
+            - for
+            for(조건문) { 반복실행 될 코드들 }
+            보통은 i는 iterate의 약자로 많이 쓰임
+        */
+       for(var j = 0; j < 10; j++){
+           document.write("for문 j의 값 : " + j + "<br>");
+       }
+
+
+
+
+       /*
+            반복문의 제어
+            -break : 현재 반복문을 아예 끝내고 밖으로 나간다라는뜻
+            -continue : 건너뛰어라, 다시돌아가라(여기서는 if값이 ture이면 그값만 뛰어넘고 다시 돌아가라 >> 그래서 결과에서 5가 안나옴)
+       */
+       for(var i = 0; i < 10; i++){
+           if( i === 5 ){
+               break;
+           }
+           document.write("for break사용 : " + i + "<br>");
+       }
+
+       for(var i = 0; i < 10; i++){
+           if( i === 5 ){
+                continue;
+           }
+           document.write("for continue사용 : " + i + "<br>");
+       }
+
+
+       /*
+            반복문의 중첩
+            for문안에 for문
+
+            여기서 알아야 할 것!
+            앞에 문자가 있거나 뒤에 문자가 있으면 숫자들은 자동적으로 문자열로 바뀌게된다
+
+            또하나의 팁!
+            디버그 : 버그(오류)를 제거하는 행위
+            디버거 : 버그(오류)를 제거하는 행위를 도와주는 도구
+
+            크롬, 익플, 웨일등등에서 f12를 누른 후 source탭에서 지금 테스트를 원하는 file을 클릭후
+            디버깅을 원하는 줄의 번호를 클릭한다(이렇게 하면 파란색으로 뜨거나 빨간점표시가 나타난다) >> breakpoint
+            그상태에서 f5를 누르면 클릭해두었던 줄 이전의 코드들만 실행된다
+            그옆이나 그밑에 debugger paused라는 창을 보면 breakpoint의 위치가 보이면서
+            여러개의 버튼이 보이는데 아래화살표+점을 누르면 다음 코드들이 동작이된다
+            재생버튼을 누르면 그상태로 그밑의 코드들이 전부 실행이 된다.
+       */
+       for(var i = 0; i < 10; i++){
+           for(var j = 0; j < 10; j++){
+               document.write("중첩for문 : " + i + j + "<br>");
+           }
+       }
+
+       // 별찍기 예제1
+    //    for(var i = 0; i < 9; i++){
+    //        for(var j = 0; j<i; j++){
+    //            document.write("*");
+    //        }
+    //        document.write("<br>");
+    //    }
+
+       // 별찍기 예제2
+       var text = prompt("숫자입력");
+       for(var i = 0; i < text; i++){
+           for(var j = 0; j<i; j++){
+               document.write("*");
+           }
+           document.write("<br>");
+        }
+       for(var i = 0; i <= text; i++){
+           for(var j = 9; i <= j; j--){
+               document.write("*");
+           }
+           document.write("<br>");
+       }
+    </script>
+</body>
+</html>

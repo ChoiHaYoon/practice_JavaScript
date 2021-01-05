@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+        /* 
+            4. 연산자
+            - == : 동등연산자
+            좌항과 우항을 비교했을 시 서로 값이 같다면 true, 틀리면 false값을 나타냄
+            자료형이 틀려도 true가 나온다 >> 같은 의미만 가져도 ture로 나온다
+            ex) 
+            console.log(1 == "1"); >> true
+            console.log(1 == 1); >> true
+
+            - === : 일치연산자
+            동등연산자와 마찬가지로 좌항과 우항을 비교했을 시 서로 값이 같다면 true, 틀리면 false값을 나타냄
+            but, 값이 같으나 자료형이 틀리면 false로 나오게된다
+            ex)
+            console.log(1 === "1"); >> false
+            console.log(1 === 1); >> true
+        */
+
+        console.log(1 === "1");
+        console.log(1 === 1);
+        console.log(1 == "1");
+        console.log(1 == 1);
+
+        /*
+            undefined >> 값이 정의되어있지않다라는뜻(의도하지않게 값이 없다는 뜻)
+            null >> 값이 없다라는뜻(값이 없는데 의도적으로 값이 없는것을 정의)
+            이 두개는 동등연산자에서는 true이지만 일치 연산자에서는 false가 나온다
+
+            동등연산자에서 true는 숫자1로 간주한다. 그렇기때문에 2나 3으로 ==을 사용하면 false가 나온다
+            0/0는 성립하지않는 값이기 때문에 NaN으로 나온다(계산할수 없음이라는뜻)
+        */
+
+        
+    </script>
+</body>
+</html>

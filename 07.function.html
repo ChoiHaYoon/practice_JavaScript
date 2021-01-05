@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /* 7. 함수
+            하나의 로직을 재실행 할 수 있도로고 하는 것으로 코드의 재사용성을 높여준다 
+                >> 문제해결을 한곳에서만 하면 모두 반영된다(유지보수 용이)
+                >> 가독성이 높아진다
+            function 함수이름(인자여러개){
+                코드들
+                return 반환값;
+            } 
+            괄호가 있다 >> function
+            괄호가 없다 >> variable
+            이라고 인식을 한다
+        */
+
+        function numbering(){
+            // document.write(1);
+            var i = 0;
+            while(i < 10){
+                document.write(i);
+                i += 1;
+            }
+        }
+
+        // 호출
+        numbering();
+        document.write("<br>");
+        document.write("호잉");
+        document.write("<br>");
+        numbering();
+        
+
+        /* 
+            함수의 출력
+            - return >> 함수종료 / return뒤에 있는 값을 함수의 출력값으로 반환하겠다
+            return이 아무리많아도 처음 return값을 출력해준다 why? return을 만나면 무조건 종료이기때문에
+        */
+        function get_member1(){
+            return "h2";
+            return "hoho";
+        }
+        console.log(get_member1());
+
+        /*     
+            함수의 입력
+            ex)
+            function get_argument(arg){
+                return arg;
+            }
+
+            alert(get_argument(1));
+
+            이것은 arg라는 변수에 1을 집어넣어서 return을 arg변수에 담긴 값을 출력하겠다라는 것
+        */ 
+
+        function get_test(arg){
+            return arg + 1;
+        }
+
+        document.write("<br>");
+        document.write(get_test(1));
+
+        /*
+            함수를 정의 하는법
+            - 변수명 = function(){ }
+            - (function(){ })(); >> 변수명없이 바로 호출(익명함수, 보통 1회성으로 호출)
+        */
+    </script>
+</body>
+</html>

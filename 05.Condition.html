@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+        // 5. 조건문
+        // 주어진 조건에 따라서 에플리케이션을 다르게 동작하게 하는것
+        // 조건문과 boolean은 뗄레야 뗄수없는것
+
+        var a = 1;
+        if(a === 1){
+            console.log("하이");
+        }
+
+        // 팝업입력창띄우기 : prompt()
+        // var b = prompt("나이가몇?");
+        // if(b <= 20){
+        //     alert("양심어디?");
+        // }
+
+        // var id = prompt("아이디입력plz");
+        // if(id === 'alice1411'){
+        //     var pwd = prompt("비밀번호plz");
+        //     if(pwd == '111'){
+        //         alert("아이디와 비번 일치함");
+        //     } else {
+        //         alert("틀려");
+        //     }
+        // } else {
+        //     alert("아님");
+        // }
+
+        /*
+            논리연산자
+            and연산자 : &&
+            or연산자 : ||
+        */
+        
+        var id = prompt("아이디입력plz");
+        var pwd = prompt("비밀번호plz");
+        if(id === 'alice1411' && pwd == '111'){
+            alert("아이디와 비번 일치함");
+        } else if (id !== 'alice1411' || pwd != '111' ){
+            alert("아님");
+        }
+
+        // if문은 이렇게도 사용이 가능함
+        if(1){
+            alert(1);
+        }
+        // >> true이기때문에 실행함
+        if(0){
+            alert(0);
+        }
+        // >> false이기 때문에 실행이 안됨
+        // why?? javascript에서 숫자 1은 true의 의미이기때문에 실행이 되는것 >> 하지만 안쓴느게 좋음
+
+        // 기타 false로 간주되는 데이터형
+        // 1. 빈문자형 >> ('')
+        // 2. undefined
+        // 3. !변수명
+        // 4. null
+        // 5. NaN
+    </script>
+</body>
+</html>

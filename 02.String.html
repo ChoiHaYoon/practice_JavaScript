@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+        // 2. 문자
+        // 문자는 반드시 큰따옴표 or 작은따옴표 사이에 써야한다. > 브라우저에게 지금부터 나오는text는 문자라는 것을 해석하게 하는것
+        console.log("eging's coding everybody");
+        // >> 유효
+        console.log('eging\'s coding everybody');
+        // >> 유효(안에 같은 작은따옴표를 사용하고 싶으면 역슬래시(\)사용)
+        // 역슬래시? 역슬래시 뒤의 기호는 그냥 정보로써 해석한다라는 뜻으로 약속
+        // 역슬래시 뒤에 기호를 쓰는방식 >> escape(도망, 탈출)
+        // 원래의 임무로 부터 도망, 탈출시킨다는 뜻 / 문자로 역할을 해제시킨다
+
+        console.log(1);
+        console.log("1");
+        // 둘의 자료형은 틀리다. 첫번째는 숫자, 두번째는 문자열이다
+        // 두예제의 타입을 알아보는 메소드 >> typeof
+
+        console.log(typeof(1));
+        console.log(typeof("1"));
+
+
+        // \n >> enter의 역할
+        console.log("안녕? \n반가워요");
+        // 문자와 문자의 결합 >> +
+        console.log("안녕?" + "\n반가워요");
+        // .length >> 문자열의 길이수
+        console.log("하이".length);
+        // .indexof >> 문자열의 위치 찾기(제로인덱스 기반)
+        console.log("code index".indexOf("i"));
+    </script>
+</body>
+</html>

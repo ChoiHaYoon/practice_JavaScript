@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="jquery-3.5.1.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        11. 라이브러리
+        모듈과 비슷한 개념
+        모듈 >> 프로그램을 구성하는 작은 부품(로직)
+        라이브러리 >> 자주 사용되는 로직을 재사용하기 편리하도록 정리해놓은 일련의 코드들의 집합
+
+        직접 라이브러리를 만들 수 있다.
+
+        제일 유명한 라이브러리 >> jquery(아주잘만들어진 아주 큰 자바스크립트)
+        jquery 라이브러리를 사용할 수 있는 방법
+        - jquery홈페이지에서 jquery.js를 다운받는다
+     -->
+     <ul id="list">
+         <li>empty</li>
+         <li>empty</li>
+         <li>empty</li>
+         <li>empty</li>
+     </ul>
+     <input type="button" value="click" onclick="hihi();">
+     <input type="button" value="h2" id="click">
+     <script>
+        // $("#list").children("li").html("codingEveryBody");
+        // $("#list li").text("gkdlgkdl");
+        function hihi(){
+            $("#list li").html("뽀잉");
+        }
+
+        $("#click").on("click", function(){
+            $("#list li").html("ddndndn");
+        });
+     </script>
+</body>
+</html>

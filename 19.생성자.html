@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            19. 생성자와 new
+            - 객체
+            객체란 서로 연관되어있는 변수와 함수를 그룹핑한 그릇
+        */
+        var person = {} // {}는 비어있는 객체이고 object / 데이터를 담을 수 있는 상자
+        // 객체에 변수를 담는 법
+        person.name = 'egoing';
+        // 객체명.name(속성/프로퍼티) = 값
+        person.introduce = function(){
+            return 'My Name is' + this.name;
+        }
+        // 프로퍼티에 함수가 담겨져 있는것 >> 메소드(방법)
+        // 여기서 this란?
+        // 함수가 속해있는 객체를 의미한다 >> 여기서는 person
+        // 즉 this.name은 person.name을 이야기한다
+        // 위의 방식대로하면 코드사이에 무언가가끼어들고 복잡해질 수 있다
+        // 그렇기 때문에 합칠수가 있다.
+        var person1 = {
+            "name" : "하윤",
+            "introduce" : function(){
+                return 'My Name is' + this.name;
+            }
+        }
+
+        document.write(person1.introduce()/* 메소드 호출 */);
+
+        // person과 person1은 안의 name메소드가 같다
+        // 중복이 발생한 것 >> 코드의 양이 많아지고 코드가 복잡해지며 가독성이 떨어지며 유지보수가 어려워 진다.
+        // 이것을 해결하기 위한 방법
+        // 생성자와 new
+        /* 
+            1) 생성자란?
+            객체를 만드는 역할을 하는 함수
+            자바스크립트에서 함수는 재사용 가능한 로직의 묶음이 아닌 객체를 만드는 창조자의 역할
+        */
+        function Person(){}
+        var p0 = Person();
+        // undefined가 뜬다 why?
+        // 함수안에 아무것도 들어가있지 않기때문에(어떠한 값도 return하지 않기때문에)
+
+        // 하지만 new를 붙이면?
+        var p = new Person();
+        // Person{}이 뜬다
+        // 비어있는 객체가 들어간다
+        // new가 붙어있으면 함수라 하지않고 생성자라고한다 >> 객체의 생성자
+        // new로 인해서 비어있는 객체를 만든다.
+        // var p = {}와 비슷한 맥락이다.
+        // 즉 함수에 new를 붙이면 객체가 된다.
+
+        /* 
+            여기서 자바와 자바스크립트가 헷갈릴 만한것!
+            자바는 클래스안에 생성자가 존재한다. 즉, 생성자는 클래스에 소속되어있고 생성자를 호출하여 인스턴스(객체)를 만들어낸다
+            하지만 자바스크립트에서는 생성자가 어디에도 소속되어있지않다. 함수일 뿐
+            이 함수에 new를 붙이면 생성자를 만들어내는 것이다.
+            결과적으로는 자바스크립트에서는 클래스라는 존재가 없다.
+        */
+
+        p.name = 'egoing';
+        p.introduce = function(){ // 익명함수
+            return 'My name is '+this.name; 
+        }
+        document.write(p.introduce());
+
+        
+        // 여러개의 코드 중복 메소드일 경우!
+        // function Person(){}
+        // var p1 = new Person();
+        // p1.name = 'egoing';
+        // p1.introduce = function(){
+        //     return 'My name is '+this.name; 
+        // }
+        // document.write(p1.introduce()+"<br />");
+        
+        // var p2 = new Person();
+        // p2.name = 'leezche';
+        // p2.introduce = function(){
+        //     return 'My name is '+this.name; 
+        // }
+        // document.write(p2.introduce());
+        // 이런식으로 코드도 길어지고 복잡해진다
+        // 이걸 합쳐주면
+        function Person1(name){
+            this.name = name;
+            this.introduce = function(){
+                return "안녕하세요 " + this.name;
+            }
+        }
+
+        var p1 = new Person1("하윤");
+        var p2 = new Person1("ㅎㅅㅎ");
+        // 여기서 인자로 들어간 값들은 Person1의 매개변수의 name의 값으로 들어간다
+        // 그러면 this.name 현재 객체의 name에 인자의 값이 들어간다.
+        // 또한 this.introduce >> 즉, 현재 객체의 introduce에는 함수가 들어가게 해서 현재 객체에 introduce라는 메소드를 가지게 한다
+        // 이것은 객체에 대한 초기화를 하는것이다(Init)
+
+        document.write("<br> p1 " + p1.introduce() + "<br>");
+        document.write("p2 " + p2.introduce() + "<br>");
+
+    </script>
+</body>
+</html>

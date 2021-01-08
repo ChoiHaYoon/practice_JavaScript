@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 1. 전역변수와 지역변수
+        var vscope = "global"; // 전역변수
+
+        function fscope(){
+            var vscope = 'local'; // 지역변수
+            alert('함수안 '+ vscope); // 지역변수가 실행됨
+            // 함수내에 같은 변수가 있으면 함수내의 변수인 지역변수가 실행된다(없을경우는 전역변수가 실행)
+        }
+        fscope(); 
+        alert('함수밖 '+ vscope); // 전역변수가 실행됨
+
+        var vscope2 = "global";
+        function fscope2(){
+            vscope2 = 'local'; // 새로운 지역변수가 아닌 밖에있는 전역변수의 값을 변경 하는것
+            alert('함수안' + vscope2);
+        }
+        fscope2();
+        alert('함수밖' + vscope2); // 함수내에서 전역변수의 값을 변경하는 것이기때문에 바뀐값이 나온다
+
+
+
+        // 2. 유효범위의 효용
+        function a (){
+            var i = 0;
+        }
+        for(var i = 0; i < 5; i++){
+            a();
+            document.write(i);
+        }
+        // 결과값은 0,1,2,3,4가 된다
+
+
+        function a (){
+            i = 0;
+        }
+        for(i = 0; i < 5; i++){
+            a();
+            document.write(i);
+        }
+        /* 
+            결과값은 무한으로 돈다 why?
+            i가 0부터 5이전까지 돌리지만 for문안에서 a메소드를 호출하기때문에
+            다시 i는 0으로 초기화가 된다. 그렇기 때문에 영원히 0에서 벗어날수없고 계속 돌게된다.
+        */
+
+
+        
+        // 3. 전역변수를 사용하고 싶지않을 때 >> 익명함수 사용하여 바로 호출하기
+        (function(){
+            MYAPP = {}
+            MYAPP.calculator = {
+                'left' : null,
+                'right' : null
+            }
+            MYAPP.coordinate = {
+                'left' : null,
+                'right' : null
+            }
+            
+            MYAPP.calculator.left = 10;
+            MYAPP.calculator.right = 20;
+            function sum(){
+                return MYAPP.calculator.left + MYAPP.calculator.right;
+            }
+            document.write(sum());
+        }());
+
+
+
+        // 4. 유효범위의 대상
+        // - 자바스크립트
+        for(var i = 0; i < 1; i++){
+            var name = 'coding everybody';
+        }
+        alert(name);
+        /* 
+            - 자바
+            for(int i = 0; i < 1; i++){
+                String name = "coding everybody";
+            }
+            System.out.println(name);
+
+            >> 자바에서는 for문 안에 있는 지역변수는 밖에서 사용이 불가하지만 
+            자바스크립트는 for문에서 사용한 지역변수를 밖에서 호출이 가능하다
+        */
+
+
+        // 5. 정적 유효 범위(static scoping, 혹은 렉시컬(lexical scoping))
+        var i = 5;
+ 
+        function a(){
+            var i = 10;
+            b();
+        }
+        
+        function b(){
+            document.write(i);
+        }
+        
+        a();
+        /* 
+            여기서 a메소드를 사용하면 i는 5가 나온다. why?
+            function a안에 있는 b호출시 a안에있는 지역변수 i가 b안으로 들어가는것이아닌
+            function b가 선언된 시점에서 b안에 전역변수가 있는지 먼저 확인을 한 후 b안에 없으면 바로 전역변수를 확인 해서
+            그 전역변수의 값을 가져오기때문에 
+            즉, b가 선언된 시점에서의 i의 전역변수가 사용되는것, 호출된 시점에서 지역변수를 사용하는것이 아니기때문에
+            함수가 !정의!될때의 변수의값을 가져오는 것이다
+            만약 a안에서 i가 var i가 아닌 그냥 i = 10;일 경우에는
+            a에서 재정의 후에 b가 실행되기때문에 10이 나온다
+        */
+
+
+        // 6. 값으로서의 함수와 콜백
+        // 자바스크립트에서는 함수도 객체이다. 즉 함수가 값이 될 수 있다.
+        function a () {} // 이건 a라는 변수안에 함수가 들어가있다는 뜻으로 이야기할수있다
+        // === var a = function () {}
+        // 객체안에도 정의할 수 있다(객체는 중괄호가 있어야한다)
+        a = {
+            b: function(){}
+            // a라는 변수에 객체를 정의해 b라는 키의 값으로 함수를 정의함
+            // b라는 key는 a객체안에서 변수역할을 하고있다(값을 저장하고 있기때문에) >> 속성,property
+            // 이렇게 객체의 속성 값으로 담겨진 함수는 메소드라고 부른다
+            // 우리는 a객체 안에는 b라는 속성이 담겨있는데 그 속성의 값은 함수다.(메소드b)
+            // 위의 function a(){}는 함수
+            // 객체안의 정의되어있는 함수는 메소드
+        };
+
+
+        // 함수는 값이기 때문에 다른함수의 인자로도 받을 수 있다
+        function cal(func, num){
+            return func(num);
+        }
+
+        function increase(num){
+            return num+1;
+        }
+
+        function decrease(num){
+            return num-1;
+        }
+
+        alert(cal(increase, 1));
+        /*
+            >> 암묵적으로
+            function cal(func, num){
+                var num = 1;
+                var func = function increase(1){
+                return 1+1;
+                }
+            }
+            이라는 뜻이다
+        */ 
+
+        alert(cal(decrease, 3));
+            /*
+            >> 암묵적으로
+            function cal(func, num){
+                var num = 3;
+                var func = function decrease(3){
+                return 3-1;
+                }
+            }
+            이라는 뜻이다
+        */ 
+        // 함수도 값이기 때문에 매개변수(인자)로 넣을 수 있다.
+        
+
+    
+        // 함수를 return값으로도 사용이 가능하다
+        function cal(mode){
+            var funcs = {
+                'plus' : function(left, right){return left + right},
+                'minus' : function(left, right){return left - right}
+            }
+            return funcs[mode];
+        }
+
+        alert(cal('plus')(2,1)); // 3
+        // cal함수를 사용하였을시 plus를 찾은 후 함수를 호출하여 매개변수로 2,1을 넣어주고 리턴하는 것이다.
+        // 즉, funcs변수 안에있는 plus메소드를 실행하여 그안에 2와 1을 넣어 함수를 실행하고 반환하는것
+        alert(cal('minus')(2,1)); // 1
+
+
+        // 함수를 배열의 값으로도 사용이 가능하다
+        var process = [
+            function(input){ return input + 10;},
+            function(input){ return input * input;},
+            function(input){ return input / 2;}
+        ];
+        var input = 1;
+        for(var i = 0; i < process.length; i++){
+            input = process[i](input);
+        }
+        alert(input);
+        // for문은 process의 길이만큼 돌린다 그 안에는 process배열의 i번째에 있는 함수를 실행시켜 input에 담아준다
+        // process[i]뒤에 소괄호가있기때문에 함수를 호출하는것 >> 매개변수로 var input의 값이 1을 넣어준다
+        // 나오는 값은
+        // process[0] >> 11
+        // process[1] >> 위에서 이미 input은 11이 되었기 때문에 11 * 11 = 121
+        // process[2] >> input은 121이고 /2를 하면 60.5가 나온다
+        // for문이 다 돌고난 뒤의 마지막 값을 받기 때문에 alert(input)은 60.5가 나온다
+
+
+        // 변수, 매개변수, 리턴값 >> 이러한 용도로 사용될수 있는 형태의 데이터를 프로그래밍에서는
+        // first-class Citizen / first-class Object / first-class Entity 라고 이야기한다 
+
+
+        // 7. 콜백
+        // 처리의 위임
+        // 함수는 인자로 전달할 수 있다. 
+        // 이를 이용하면 함수의 동작을 완전히 바꿀 수 있다. >> 구현에 따라서 sort의 동작방법이 완전히 바뀌게 된다.
+        var numbers = [29,10,3,64,2,7,5];
+        // numbers.sort();
+        //-------객체(배열객체)
+        // sort는 객체안에 있는 함수이기때문에 메소드라고 한다. >> 내장객체, 내장메소드(자바스크립트에서 제공해주는 것 이기 때문에)
+        // 우리가 만드는 객체안의 함수는 사용자정의객체, 사용자함수라고 한다
+        // sort는 숫자가 아닌 문자로 인식하고 정렬한다 >> 10단위와 1단위가 섞여있으면 무조건 앞자리가 1부터 인것부터 정렬한다(1,10,2,30,4)
+        var sortfunc = function(a, b){
+            // 여기서 매개변수 a와 b는 numbers에 넣어준 배열값들
+            // 비교할 값들을 넣어주는것이다
+            // 여기서는 29, 10 / 29, 3/ 10,2 >> 이런식으로 
+            // 두가지의 값을 비교해서 작은 수를 앞으로 보내주게 하는것이다
+            // if(a < b){
+            //     return -1;
+            // } else if(a > b){
+            //     return 1;
+            // } else {
+            //     return 0;
+            // }
+            // 리턴값이 양수인지 음수인지 0인지를 비교해서 정렬을 해준다
+
+            // 위의 것보다 쉬운방법
+            return a - b;
+            // why? a가 큰수이고 b가 작은수이면 양수
+            // a가 작은수이고 b가 큰수이면 음수
+            // a와 b가 같다면 0으로 나오기때문에
+            // 자동적으로 위와 같아진다
+        }
+
+        console.log(numbers.sort(sortfunc));
+
+        // sortfunc함수가 콜백 함수이다 >> 값으로써 함수를 사용할 수 있기때문에 원래의 함수내용을 바꿀 수 있다
+
+
+        // 콜백의 비동기처리
+        // 비동기처리란? 코드를 순차적으로 가져오지않고 먼저 데이터를 가져오는 코드부터 실행을 시키는 방식. 
+        // 대표적인 함수 >> ajax
+        // json이란? 자바스크립트에서 객체를 만들때 표현하는 방식
+        // ajax방식 >> 내가알던거랑 틀리다
+        $.get("가져올 url",function(result){
+            // 콜백함수 코드를 넣어준다
+            console.log(result);
+            // ajax로 실행하여 url안의 값들을 가져와 코드를 실행한다
+            // json은 json방식으로 가져온다는 뜻
+            
+            // ajax처리는 서버에서 정보를 가져오는 행위는같다
+            // 똑같은 부분은 get메소드가 알아서 처리하는것이고
+            // 정보를 가져온 뒤 무슨일을 처리해야할 것인가의 처리는 똑같지않다 >> 이것을 비즈니스 로직이라고 한다
+            // 비즈니스로직은 모든 사용자가 똑같이 처리하는것이 아니기때문에 이걸 사용자에게 위임을 해야한다 >> 콜백함수를 통해서 인자를 전달받는 것
+            // 함수를 인자(매개변수)의 값으로 전달하는 것을 통해서 get메소드의 동작을 완전히 바꿀 수 있는 것이다.
+        }, 'json');
+
+
+        // 8. 클로저
+        // 클로저란 내부함수가 외부함수의 맥락(context)에 접근할 수 있는것을 가르킨다
+        // - 내부함수 : 함수안에 또다른 함수를 선언하는 것
+        // - 외부함수 : 내부함수를 감싸고 있는 함수
+        function outter(){ // 외부함수
+            var title = "coding everybody"; // 외부함수의 지역변수
+            function inner(){ // 내부함수
+                alert(title);
+                // 내부함수에서 외부함수의 지역변수에 접근할 수 있다 >> 클로저
+            }
+            inner();
+        }
+        outter();
+
+        // 이렇게도 만들 수 있다.
+        function outter(){
+            var title = "coding everybody";
+            return function(){
+                alert(title);
+                // 외부함수는 return때문에 죽었는데 내부함수의 접근이 성공했다.
+                // 클로저의 독특함 >> 외부함수가 종료된 이후에도 내부함수에 접근할 수 있다.(클로저의 중요특징)
+            }
+        }
+
+        var inner = outter(); // inner변수에 outter함수를 담는다
+        inner();
+
+
+        function factory_movie(title){
+            return {
+                /* 
+                    두개는 factory_movie에 대한 내부함수이다
+                    다만 소속이 객체에 소속되어있다.
+
+                    get_title과 set_title은 누구나 접근할 수 있다. >> public
+                    get_title과 set_title의 내부적으로 사용하는 변수는 title이다
+                    이 title은 외부함수의 지역변수인 title이다
+                    이 지역변수인 title은 factory_movie함수가 어떤값을 return했을 때
+                    함수 자체는 생이 마감된다 >> 지역변수인 title은 get_title과 set_title을 통해서만 접근할 수 있는 변수가 된다.
+                    즉 title은 private이 된다
+                */
+                get_title : function (){
+                    return title;
+                },
+                set_title : function(_title){
+                    title = _title
+                }
+            }
+        }
+
+        ghost = factory_movie('Ghost in the shell');
+        matrix = factory_movie('Matrix');
+        console.log(ghost.get_title()); // Ghost in the shell
+        console.log(matrix.get_title()); // Matrix
+
+        // 만약 ghost의 set_title을 "공각기동대로 바꾼다면?"
+        ghost.set_title("공각기동대");
+        console.log(ghost.get_title()); // 공각기동대
+        console.log(matrix.get_title()); // Matrix
+
+        // 클로저의 응용
+        var arr = []
+        for(var i = 0; i < 5; i++){
+            /* 
+                여기서 외부변수의 id는 호출할때의 i >> 맨 밑에 i(매개변수로 넣어줄 값)
+                그렇기 때문에 i가 0이면 외부함수의 id도 0이 되고 내부함수의 id도 0이 된다.
+                그러면 arr[0] = 0이 들어가게 된다
+            */
+            arr[i] = function(id) {
+                return function(){
+                    return id;
+                }
+            }(i);
+        }
+        for(var index in arr) {
+            console.log(arr[index]());
+        }
+    </script>
+</body>
+</html>

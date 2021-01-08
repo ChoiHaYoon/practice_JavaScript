@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            22. 상속
+            부모객체의 기능과 특징을 물려받는것
+            단순히 물려받기만 하면 의미없다 >> 기존의 로직을 수정하고 변경해서 파생된 새로운 객체를 생성한다
+            로직을 재활용(재사용성)
+            prototype base language
+        */
+
+        // 원래의 코드
+        function Person(name){
+            this.name = name;
+            this.introduce = function(){
+                return 'My name is '+this.name; 
+            }   
+        }
+        var p1 = new Person('egoing');
+        document.write(p1.introduce()+"<br />");
+
+        // 코드변경(상속을 위한 준비작업)
+        function Person(name){
+            this.name = name;
+        }
+        // prototype이라는 특수한(약속된)속성을 준것 >> 그안에는 객체가 들어가있음
+        Person.prototype.name=null;
+        Person.prototype.introduce = function(){
+            return 'My name is '+this.name; 
+        }
+
+        var p1 = new Person('egoing');
+        document.write(p1.introduce()+"<br />");
+
+        // 상속받는 자식객체
+        function Programmer(name){
+            this.name = name;
+        }
+        Programmer.prototype = new Person(); 
+        // >> 객체생성할때 Person(생성자)함수안에 prototype이란 속성을 가지고있는지 확인(생성자 함수안에 있는 객체와 똑같은 객체를 만들어서 반환)
+        /* 
+            즉 prototype라는 특수한 속성의 값으로 new Person(생성자)을 넣어준것이다
+            이것은 부모객체를 자식객체에 속성으로 넣어주게 된 것
+            이렇게 하면 상속이 되기때문에 Programmer함수를 생성자를 이용해서 객체로 만들고 p1에 담으면
+            introduce라는 메소드를 사용할 수 있는 것이다.
+
+            사용법은 
+            어떠한 객체를 상속받고싶으면 생성자의 prototype에 할당시키면된다
+            라고 이해하면 된다
+        */
+        var p1 = new Programmer('egoing');
+        document.write(p1.introduce()+"<br />");
+
+
+        // 상속받은 객체에 값변경
+        // 부모객체
+        function Person(name){
+            this.name = name;
+        }
+        Person.prototype.name=null;
+        Person.prototype.introduce = function(){
+            return 'My NickName is '+this.name; 
+        }
+        
+        // 자식객체1
+        function Programmer(name){
+            this.name = name;
+        }
+        Programmer.prototype = new Person(); // Person을 상속받은것
+        Programmer.prototype.coding = function(){
+            return "hello world";
+        }
+
+        var p1 = new Programmer('egoing');
+        document.write(p1.introduce()+"<br />");
+        document.write(p1.coding()+"<br />");
+
+
+        //자식객체2
+        function Designer(name){
+            this.name = name;
+        }
+        Designer.prototype = new Person(); // Person을 상속받음
+        Designer.prototype.design = function(){
+            return "Beautiful";
+        }
+
+        var p2 = new Designer('하이');
+        document.write(p2.introduce()+"<br />");
+        document.write(p2.coding()+"<br />");
+    </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            23. 프로토타입
+            상속의 구체적인 수단
+            원(래의)형(태)이라는 뜻
+            
+            생성자는 기본적으로 함수이다
+            함수를 호출할 때는 new를 붙이면 단순한 함수가 아닌 생성자라는 함수가 된다
+            그결과 새로운 객체를 만들고 리턴한다
+
+            비어있는 객체를 생성하는 역할이라면 의미가 없다
+            var o = {} >> 이렇게 만들어도 되기때문에
+            어떠한 객체를 만들때 그 객체가 가져야하는 데이터인 프로퍼티값을 가지고 우리에게 주어주길 바라기때문에
+            (비어있는것은 소용이 없기때문에)
+            얻고자하는 객체의 원형(어떠한 메소드와 속성을 가지고있는 원형)은 prototype이라는 특수한 속성에 저장되어있다(정의되어있다)
+            저장을 하고있다가 new라는 생성자를 통해서 호출하게 되면 객체를 꺼내서 return해준다
+
+            즉 prototype속성은 객체(현재 비어있는)를 가르키는 것이고 함수명.prototype.name("값")을 하게되면
+            객체안에 name이라는 속성으로 값을 넣어라가 되는것이다
+        */
+
+        function Ultra(){}
+        Ultra.prototype.ultraProp = true;
+        
+        function Super(){}
+        Super.prototype = new Ultra();
+        
+        function Sub(){}
+        Sub.prototype = new Super();
+        
+        var o = new Sub();
+        console.log(o.ultraProp);
+    </script>
+</body>
+</html>

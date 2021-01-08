@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            17. 함수의 호출
+            자바스크립트는 함수를 호출하는 특별한 방법을 제공한다
+            함수 == 객체
+            함수는 객체이기 때문에 메소드를 가지고있다.
+            우리가 만든것이 아닌 자바스크립트에서 제공하는 내장메소드이다.
+            function func(){
+
+            }
+            func라는 함수에 .apply 또는 .call이라는 메소드에 접근할 수 있다.
+            두개는 func라는 함수를 호출하는 메소드이다.
+        */
+
+        function sum(arg1, arg2){
+            return arg1+arg2;
+        }
+        console.log(sum(1,2));
+
+        alert(sum.apply(null, [1,2]));
+        // 여기서 apply는 sum이라는 함수객체에 담겨져 있는 메소드이다.
+        // apply에서는 배열로 매개변수의 값을 지정해줘야한다.(오리지널 함수의 값을 배열로 넣어야한다)
+        // apply를 사용하는 이유? 지금은 null로 정의가 된 첫번째 칸을 사용하기 위해서!
+
+        o1 = {val1:1, val2:2, val3:3}
+        o2 = {v1:10, v2:50, v3:100, v4:25}
+        function sum(){
+            var _sum = 0;
+            for(name in this){ // 여기서 this는 정해져있지않다(호출할 때 정해진다.)
+                _sum += this[name];
+            }
+            return _sum;
+        }
+        alert(sum.apply(o1)) // 6
+        alert(sum.apply(o2)) // 185
+        // 여기서 null값이 였던 곳에 o1과 o2를 넣어주면 sum이라는 함수가 사용할 o1이라는 객체에 값이 담겨져있으니 가져가라
+        // 즉, o1혹은o2라는 객체를 이용을 해서 함수를 사용하겠다는 뜻
+        // 어떻게 사용이 가능? this를 사용했기 때문에
+        // this에 괄호안에 넣어두었던 o1혹은 o2가 들어게가 되는것 >> var this = o1 / var this = o2
+        
+
+    </script>
+</body>
+</html>

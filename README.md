@@ -12,5 +12,5 @@
 ### :rabbit: 2021년 01월 
 
 > :heart: 01월 04일 - 강의 6번까지 (JavaScript - 숫자와 문자 (2/3) : 수의 연산)<br>
-> :heart: 01월 05일 - 강의 40번까지 (JavaScript - 객체 (3/3) : 객체지향프로그래밍)<
+> :heart: 01월 05일 - 강의 40번까지 (JavaScript - 객체 (3/3) : 객체지향프로그래밍)<br>
 > :green_heart: 01월 08일 - 강의 89번까지 (JavaScript - prototype(3/3)) ㅠㅠ

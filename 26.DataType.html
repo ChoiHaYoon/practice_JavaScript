@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            26. 데이터 타입
+            1. 원시 데이터 타입(primitive Type)
+            기본데이터 타입
+            Number, String, Boolean, Undefined, Null
+
+            - 레퍼객체
+            밑의 문자열은 객체처럼 동작하고 있다
+            .은 Object access Operator(객체 접근 연산자)이다.
+            즉, .앞은 객체라는 것을 알 수 있다. 객체이기때문에 속성이 있고 메소드가 존재하는 것 이다.
+            문자열이 객체라는 것을 알 수 있다.
+            자바스크립트에서는 객체지향프로그래밍이기 때문에 문자열을 임시로 객체로 만들어준다.
+            밑의 코드에서 var str = "coding"은
+            var str = new String("coding")으로 한것과 같다.
+
+        */
+        var str = "coding";
+        console.log(str.length); // 6
+        console.log(str.charAt(0)); // c
+
+        str.prop = "everyBody";
+        console.log(str.prop); // undefined
+        /*
+            여기서 undefined가 뜨는 이유는
+            문자열을 객체처럼 사용하려고하면 내부적으로 객체화를 시켜버리기 때문이다.
+            그렇기 때문에 prop사용시 오류가 안나고 그다음 코드로 넘어가게 되는데
+            정작 prop를 사용하여 값을 확인하려면 정의 되어있지 않다라고 뜬다.
+            그이야기는 처음 prop사용시에는 객체가 만들어지지만 그순간이 끝나면
+            객체를 제거하고 원래의 원시타입으로 변경해놓기 때문에 prop를 사용하면 값이 나타나지 않느다.
+
+            원시데이터타입을 마치 객체처럼 사용하려고 할 때 자동으로 만들어지는 객체를 Wrapper Object라고한다
+            Wrapper >> 감싸다.(원시데이터타입을 감싸주는 객체(Stirng))
+
+            즉, 원시데이터타입은 객체가 아니기때문에 객체처럼 사용이 불가능한데
+            이러한 Wrapper Object를 통해서 원시데이터타입을 마치 객체인것처럼 사용할 수 있게 되는 것(자바스크립트에서 자동으로 진행해줌)
+
+            Null과 undefined는 wrapper객체가 존재하지 않는다
+            숫자는 Number, 문자열은 String, 불리언(true/false)는 Boolean이라는 wrapper객체를 가지고있다.
+            
+        */
+
+        /*
+            2. 객체 데이터 타입
+            참조데이터 타입
+            원시 데이터 타입이 아닌 데이터타입
+        */
+    </script>
+</body>
+</html>

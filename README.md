@@ -1,4 +1,4 @@
-# 생활코딩 JavaScript 입문편
+# 생활코딩 JavaScript 입문편 & Dream Coding JavaScript(ES6)
 ## :calendar: Study Time Line
 
 ### :laughing: Status 

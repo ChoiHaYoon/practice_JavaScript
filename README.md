@@ -14,5 +14,7 @@
 > :heart: 01월 04일 - 강의 6번까지 (JavaScript - 숫자와 문자 (2/3) : 수의 연산)<br>
 > :heart: 01월 05일 - 강의 40번까지 (JavaScript - 객체 (3/3) : 객체지향프로그래밍)<br>
 > :green_heart: 01월 08일 - 강의 89번까지 (JavaScript - prototype(3/3)) ㅠㅠ.. 완강목표무너짐...ㅠㅠ<br>
-> :heart: 01월 09일 - javascript입문편 완강
+> :heart: 01월 09일 - javascript입문편 완강<br>
+> :heart: 01월 12일 - DreamCoding 시작(2강)<br>
+> :green_heart: 01월 15일 - DreamCoding (8강)<br>
 

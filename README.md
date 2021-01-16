@@ -1,4 +1,4 @@
-# 생활코딩 JavaScript 입문편
+# 생활코딩 JavaScript 입문편 & Dream Coding JavaScript(ES6)
 ## :calendar: Study Time Line
 
 ### :laughing: Status 
@@ -17,4 +17,4 @@
 > :heart: 01월 09일 - javascript입문편 완강<br>
 > :heart: 01월 12일 - DreamCoding 시작(2강)<br>
 > :green_heart: 01월 15일 - DreamCoding (8강)<br>
-
+> :broken_heart: 01월 16일 - DramCoding (11강) >> 너무 게으름 피웠다...ㅠㅠ<br>
